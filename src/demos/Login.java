@@ -1,5 +1,6 @@
 package demos;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -14,13 +15,22 @@ public class Login {
 		driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
 		
 		// 3. Enter email address
+		driver.findElement(By.name("ctl00$MainContent$txtUserName")).sendKeys("tim@testemail.com");
 		
 		// 4. Enter password
+		driver.findElement(By.name("ctl00$MainContent$txtPassword")).sendKeys("trpass");
 		
 		// 5. Click login
+		driver.findElement(By.name("ctl00$MainContent$btnLogin")).click();
 		
 		// 6. Get Confirmation
+		String message = driver.findElement(By.id("conf_message")).getText();
+		System.out.println("Confirmation: " + message);
+		
+		String pageTitle = driver.getTitle();
+		System.out.println("Page title test passed: Currently on " + pageTitle);
 		
 		// 7. Close Browser
+		driver.close();
 	}
 }
